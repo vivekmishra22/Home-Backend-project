@@ -17,4 +17,23 @@ const add = async(req, res) => {
     }
 }
 
-module.exports = { add }
+const getdata = async(req, res) => {
+    try {
+        const data = await model.find()
+        res.status(200).send({ data })
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({message:'internal server error'})
+    }
+}
+
+const deletedata = async(req, res) => {
+    try {
+        const data = await model.deleteOne({ _id: req.params.id})
+        res.status(200).send({ data })
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+module.exports = { add, getdata, deletedata };
