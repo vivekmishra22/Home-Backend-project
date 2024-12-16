@@ -1,4 +1,4 @@
-const model = require('./Model')
+const model = require('./Model');
 
 // post api 
 
@@ -37,16 +37,16 @@ const deletedata = async (req, res) => {
 }
 
 const update = async (req, res) => {
-    const { name, email, mobile } = req.body;
+    const { fname, email, mobile } = req.body;
     try {
         const data = await model.updateOne(
             { _id: req.params._id },
             {
                 $set: {
-                    name,
+                    fname,
                     email,
                     mobile
-                }
+                },
             }
         );
 
