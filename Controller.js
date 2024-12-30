@@ -3,10 +3,10 @@ const model = require('./Model');
 // post api 
 
 const add = async (req, res) => {
-    const { fname, email, mobile } = req.body;
+    const { fname, email, mobile, address, city } = req.body;
     try {
         const data = new model({
-            fname, email, mobile
+            fname, email, mobile, address, city
         });
         const userdata = await data.save()
         res.send({ userdata });
@@ -37,7 +37,7 @@ const deletedata = async (req, res) => {
 }
 
 const update = async (req, res) => {
-    const { fname, email, mobile } = req.body;
+    const { fname, email, mobile, address, city } = req.body;
     try {
         const data = await model.updateOne(
             { _id: req.params._id },
@@ -45,7 +45,9 @@ const update = async (req, res) => {
                 $set: {
                     fname,
                     email,
-                    mobile
+                    mobile,
+                    address,
+                    city
                 },
             }
         );
